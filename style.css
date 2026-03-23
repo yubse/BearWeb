@@ -1,0 +1,941 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 头部样式 */
+.header-top {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+nav {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+}
+
+.nav-menu {
+    position: absolute;
+    left: 20px;
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-right {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #ff6b35;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Banner样式 */
+.banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 45.33%; /* 3:1 比例 */
+    margin-top: 50px; /* 为固定导航栏留出空间 */
+    max-width: 100%;
+}
+
+.banner-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-slide {
+    flex: 0 0 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.banner-slide.active {
+    opacity: 1;
+}
+
+.banner-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-content {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #333;
+    max-width: 500px;
+}
+
+.banner-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.banner-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ff6b35;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #e55a2b;
+}
+
+.banner-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.banner-controls button {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.3);
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.banner-controls button:hover {
+    background-color: rgba(255,107,53,0.8);
+    border-color: #ff6b35;
+}
+
+/* 通用section样式 */
+section {
+    padding: 60px 20px;
+    margin-top: 100px; /* 为固定导航栏留出空间 */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.section-header {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header:not(:has(.view-all)) {
+    justify-content: center;
+}
+
+.section-title {
+    text-align: center;
+}
+
+.section-title h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.section-title p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+.view-all {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.view-all:hover {
+    color: #ff6b35;
+}
+
+/* 产品网格样式 */
+.product-grid {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    position: relative;
+    background-color: transparent;
+    box-shadow: none;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 1:1 比例 */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.product-image,
+.product-image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.product-image {
+    opacity: 1;
+}
+
+.product-image-hover {
+    opacity: 0;
+}
+
+.product-card:hover .product-image {
+    opacity: 0;
+}
+
+.product-card:hover .product-image-hover {
+    opacity: 1;
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    z-index: 10;
+    font-weight: bold;
+}
+
+.product-card h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.product-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* About Us 样式 */
+.about-us {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 60px 20px;
+    margin-top: 100px;
+}
+
+.about-slider-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.about-slider {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 40px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* 隐藏Firefox滚动条 */
+    width: 100%;
+    position: relative;
+}
+
+.about-slider::-webkit-scrollbar {
+    display: none; /* 隐藏Chrome滚动条 */
+}
+
+.about-slide {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.5s ease;
+    transform-origin: center;
+}
+
+.about-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.5s ease;
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-info {
+    max-width: 250px;
+    transition: all 0.5s ease;
+}
+
+.about-date {
+    font-size: 12px;
+    margin-bottom: 5px;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+.about-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+.timeline-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.timeline-slider {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 40px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* 隐藏Firefox滚动条 */
+    width: 100%;
+    position: relative;
+}
+
+.timeline-slider::-webkit-scrollbar {
+    display: none; /* 隐藏Chrome滚动条 */
+}
+
+.timeline-item {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.5s ease;
+    transform-origin: center;
+}
+
+.timeline-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: all 0.5s ease;
+}
+
+.timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeline-info {
+    max-width: 250px;
+    transition: all 0.5s ease;
+}
+
+.timeline-date {
+    font-size: 12px;
+    margin-bottom: 5px;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+.timeline-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+}
+
+/* 中间项目的样式 */
+.timeline-item.active {
+    transform: scale(1.1);
+}
+
+.timeline-item.active .timeline-image {
+    width: 250px;
+    height: 187.5px; /* 4:3 比例 */
+}
+
+.timeline-item.active .timeline-date,
+.timeline-item.active .timeline-title {
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* 左侧和右侧项目的样式 */
+.timeline-item.left {
+    transform: scale(0.8);
+}
+
+.timeline-item.left .timeline-date,
+.timeline-item.left .timeline-title {
+    opacity: 0.4;
+}
+
+.timeline-item.right {
+    transform: scale(0.8);
+}
+
+.timeline-item.right .timeline-date,
+.timeline-item.right .timeline-title {
+    opacity: 0.4;
+}
+
+/* 角色展示样式 */
+.characters {
+    background-color: #f9f9f9;
+}
+
+.character-slider-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.character-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* 隐藏Firefox滚动条 */
+    width: 100%;
+}
+
+.character-slider::-webkit-scrollbar {
+    display: none; /* 隐藏Chrome滚动条 */
+}
+
+.character-slide {
+    flex: 0 0 250px;
+    text-align: center;
+}
+
+.character-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 1:1 比例 */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.character-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.progress-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.progress-bar {
+    flex: 0 0 50%;
+    height: 2px;
+    background-color: #e0e0e0;
+    position: relative;
+    margin-right: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #000;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.slider-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.slider-controls button {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.slider-controls button:hover {
+    background-color: #ff6b35;
+    color: #fff;
+    border-color: #ff6b35;
+}
+
+/* 展会回顾样式 */
+.exhibition-grid {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.exhibition-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px;
+}
+
+.exhibition-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.exhibition-card:hover img {
+    transform: scale(1.1);
+}
+
+.exhibition-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.exhibition-card:hover .exhibition-overlay {
+    transform: translateY(0);
+}
+
+.view-more {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* 尾板样式 */
+footer {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 20px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-logo img {
+    height: 50px;
+    width: auto;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #ff6b35;
+}
+
+.contact-info {
+        text-align: center;
+
+    font-size: 14px;
+}
+
+.contact-info p {
+        text-align: center;
+    margin: 0;
+}
+
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 15px;
+}
+
+/* About Us 页面样式 */
+.about-page {
+    padding: 60px 20px;
+    margin-top: 100px;
+}
+
+.about-page .timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 60px;
+}
+
+.about-page .timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ff3b30;
+    z-index: 5;
+}
+
+.about-page .timeline-item {
+    margin-bottom: 60px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+
+.about-page .timeline-point {
+    position: absolute;
+
+    top: 100px;
+    z-index: 10;
+    padding: 5px 12px;
+    background-color: #ff3b30;
+    border-radius: 20px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+    transform: translateX(-100%);
+    white-space: nowrap;
+}
+
+.about-page .timeline-content {
+    box-sizing: border-box;
+    margin-left: 60px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+
+.about-page .timeline-content .timeline-image {
+    flex: 0 0 40%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-page .timeline-content .timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.about-page .timeline-content .content-text {
+    flex: 0 0 50%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-page .timeline-year {
+    background-color: #ff3b30;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.about-page .timeline-content h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.about-page .timeline-content p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .banner {
+        padding-top: 33.33%; /* 保持3:1比例 */
+    }
+    
+    .banner-content h1 {
+        font-size: 32px;
+    }
+    
+    .banner-content p {
+        font-size: 16px;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .exhibition-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-links {
+        justify-content: center;
+    }
+    
+    /* About Us 页面响应式 */
+    .timeline-container::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+    
+    .timeline-content {
+        padding: 0 0 0 70px;
+        text-align: left;
+    }
+    
+    .timeline-content.left {
+        text-align: left;
+        order: 2;
+    }
+    
+    .timeline-content.right {
+        order: 2;
+    }
+    
+    .timeline-point {
+        left: 30px;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        padding-top: 33.33%; /* 保持3:1比例 */
+    }
+    
+    .banner-content h1 {
+        font-size: 24px;
+    }
+    
+    .banner-content p {
+        font-size: 14px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
